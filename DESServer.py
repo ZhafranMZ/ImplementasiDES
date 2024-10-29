@@ -374,10 +374,10 @@ def server_program():
         if not data:
             # if data is not received break
             break
-        print("Recieved from user before encypted: " + str(data))
+        print("Received from user before decrypted: " + str(data))
         data = decrypt(data, key)
 
-        print("After encrypted: " + str(data))
+        print("After decrypted: " + str(data))
         data = input(' -> ')
         data = encrypt(data, key)
         conn.send(data.encode())  # send data to the client
