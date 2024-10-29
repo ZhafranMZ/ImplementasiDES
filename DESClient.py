@@ -364,15 +364,18 @@ def client_program():
 
     message = input(" -> ")  # take input
     message = encrypt(message, key)
-
-    while message.lower().strip() != 'bye':
+    signal = message
+    while signal.lower().strip() != 'bye':
         client_socket.send(message.encode())  # send message
         data = client_socket.recv(1024).decode()  # receive response
+        print("Received from server before decrypted: " + data)
         data = decrypt(data, key)
-        print('Received from server: ' + data)  # show in terminal
+        print('After decrypted: ' + data)  # show in terminal
 
         message = input(" -> ")  # again take input
+        signal = message
         message = encrypt(message, key)
+        
 
     client_socket.close()  # close the connection
 
